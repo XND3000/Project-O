@@ -1,4 +1,18 @@
+
+<?php
+
+/*
+
+Template Name: Full-width layout
+
+Template Post Type: post, page, event
+
+*/
+?>
+
 <?php get_headers();?>
+
+
 
 
 <div class="container" pt-5 pb-5>
