@@ -2,13 +2,11 @@
 <?php
 
 /*
-Template Name: Standard Page Template
+Template Name: Front-Page
 */
+
 ?>
-
 <?php get_header();?>
-
-
 
 
 <div class="container" pt-5 pb-5>
