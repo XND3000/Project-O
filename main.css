@@ -5,6 +5,11 @@ header{
 }
 
 
+.widget {
+	list-style-type: none;
+	margin: 100%;
+	padding:0;
+}
 
 .page-wrap {
 	padding: 2rem 0;
