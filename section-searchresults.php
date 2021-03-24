@@ -24,11 +24,15 @@
 			</div>
 
 		</div>
+	
 	</div>
 
 
+<?php endwhile; else: ?>
+
+
+		There are no results for '<?php echo get_search_query();?>' 
 
 
 
-	
-<?php endwhile; else: endif;?>	
+<?php endif;?>	
