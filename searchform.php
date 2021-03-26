@@ -1,4 +1,4 @@
-<form action="/" method="get">
+<form action="./" method="get">
 
 	
 
@@ -10,7 +10,7 @@
 
 	<input type="hidden" name="cat" value="10">
 
-	<intput type="text" name="s" id="search" value="<?php the_search_query();?>"required>
+	<input type="text" name="s" id="search" value="<?php the_search_query();?>"required>
 
 		
 
