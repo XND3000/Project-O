@@ -3,14 +3,19 @@
 }
 
 .app{
-  background-color: white;
+  background-color: #FAFAFA;
 }
 
-.app__header {
-  background-color:  white;
-  padding: 20px;
-  border-bottom: 1px solid lightgray;
+.app__header{
+  padding: 15px;
+  background-color: rgb(236, 14, 155);
   object-fit: contain;
+  border-bottom: 1px solid purple;
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 .app__signup {

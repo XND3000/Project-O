@@ -1,63 +1,66 @@
- import React, { useState } from 'react'
- import { Button } from "@material-ui/core";
- import {storage, db} from "./firebase";
- 
- function Imageupload() {
-    const [image, setImage] = useState ('null');
-    const [progress, setProgress] = useState(0);
-    const [caption, setCaption] = useState('');
+import React , { useState } from 'react';           
+import {Button} from '@material-ui/core';
+import {db , storage} from './firebase.js';
+import firebase from 'firebase';
+//import './ImageUpload.css';
 
-    const handleChange =(e) => {
-        if(e.target.files[0]) {
+function ImgUpload({username}) {
+    const [caption , setCaption] = useState('');
+    const [image, setImage] = useState(null);
+    //const [url, setUrl] = useState(" ");
+    const [progress,setProgress] = useState(0);
+
+    const handleChange = (e) =>{
+        if(e.target.files[0]){
             setImage(e.target.files[0]);
         }
-    };
+    }
 
-    const handleUpload = () => {
-        const uploadTask = storage.ref('images/${image.name}').put(image);
-
+    const handleUpload = () =>{
+        const uploadTask = storage.ref(`images/${image.name}`).put(image);
         uploadTask.on(
-            "state_changed", 
+            "state_changed",
             (snapshot) => {
-                //progress function ...
                 const progress = Math.round(
                     (snapshot.bytesTransferred / snapshot.totalBytes) * 100
                 );
                 setProgress(progress);
             },
-            (error) => {
-                // error function...
+            (error) =>{
                 console.log(error);
                 alert(error.message);
             },
             () => {
-             // complete fucntion ...
-             storage
-              .ref("images")
-              .child(image.name)
-              .getDownloadUrl()
+                storage
+                .ref("images")
+                .child(image.name)
+                .getDownloadURL()
+                .then(url => {
+                    db.collection("posts").add({
+                        timestamp : firebase.firestore.FieldValue.serverTimestamp(),
+                        caption : caption,
+                        imgUrl : url,
+                        username : username
+                    });
+
+                    setProgress(0);
+                    setCaption('');
+                    setImage(null);
+                });
             }
         )
     }
+    return (
+        <div className='ImageUpload'> 
+            <progress className= 'ImageUpload__progress' value ={progress} max="100" />
+            <input type = "text" placeholder = "Enter a Caption" onChange={event => setCaption(event.target.value)} />
+            <input type = "file" onChange = {handleChange} />
+            <Button onClick={handleUpload} variant='contained' color='secondry' >
+                Upload
+            </Button>
+        </div>
+    )
+}
 
-
-     return (
-         <div>
-             
-             {/*I want to have */}
-             {/*caption input */}
-             {/*file picker */}
-             {/*post button */}
-
-             <input type="text" placeholder='Enter a caption' onChange={event => setCaption(event.target.value)}value={caption}/>
-             <input type="file" onChange={handleChange} />
-             <Button onClick={handleUpload}>
-                 Upload
-             </Button>
-         </div>
-     )
- }
- 
- export default Imageupload
-
+export default ImgUpload
  
