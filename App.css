@@ -3,14 +3,20 @@
 }
 
 .app{
-  background-color: #FAFAFA;
+  background-color:  whitesmoke;
 }
+
+.app_posts{
+  padding: 20px;
+}
+
+
 
 .app__header{
   padding: 15px;
-  background-color: rgb(236, 14, 155);
+  background-color: #FAFAFA;
   object-fit: contain;
-  border-bottom: 1px solid purple;
+  border-bottom: 1px solid #FAFAFA;
   display: flex;
   justify-content: space-between;
   position: sticky;
@@ -18,21 +24,15 @@
   z-index: 1;
 }
 
-.app__signup {
+.app_headerImage {
+  object-fit: contain;
+}
+
+.app_signup{
   display: flex;
   flex-direction: column;
 }
-.app__posts{
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-}
 
-.app__postsLeft{
-  margin-right: 40px;
+.app_headerImage> img {
+  height: 30px
 }
-
-.app__postsRight{
-  margin-left: 50px;
-}
-
